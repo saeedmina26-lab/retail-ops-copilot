@@ -24,6 +24,10 @@ Prerequisites: Docker with Compose v2.
    `analytics` schemas (see `docker/postgres/init/`). Init scripts run only when the data
    volume is empty; to start over, run `docker compose down -v` (this deletes local data).
 
+   Postgres is published on `127.0.0.1:5433` only (not on your network). The host port
+   is 5433 rather than 5432 so it doesn't clash with a natively installed Postgres;
+   change it with `POSTGRES_PORT` in `.env`.
+
 3. Place the 9 Olist CSVs in `data/raw/` (gitignored).
 
 ## Architecture decisions

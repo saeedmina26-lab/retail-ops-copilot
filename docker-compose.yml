@@ -10,7 +10,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
     ports:
-      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+      # Localhost only. Host port defaults to 5433 to avoid clashing with a
+      # natively installed Postgres on 5432.
+      - "127.0.0.1:${POSTGRES_PORT:-5433}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       # Scripts here run once, only when the data volume is empty.
